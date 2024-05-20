@@ -1,7 +1,20 @@
 javascript: function addButtonToImages() {
     const images = document.getElementsByTagName('img');
+	const excludeAlts = ["Profilbild"];
     for (let i = 0; i < images.length; i++) {
-        const image = images[i];
+        const image = images[i];	
+		let a = image.alt || '';
+        let t = a.split(' ');
+        let n = false;
+        for (let j = 0; j < t.length; j++) {
+            if (excludeAlts.includes(t[j])) {
+                n = true;
+                break;
+            }
+        }
+        if (n) {
+            continue;
+        }
         if (!image.nextElementSibling || !image.nextElementSibling.classList.contains('image-button-container')) {
             const c = document.createElement('div');
             c.classList.add('image-button-container');  
