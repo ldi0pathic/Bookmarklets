@@ -1,10 +1,11 @@
 javascript: function addButtonToImages() {
     const images = document.getElementsByTagName('img');
 	const excludeAlts = ["Profilbild"];
+	const excludeClass = ["avatar"];
     for (let i = 0; i < images.length; i++) {
         const image = images[i];	
 		let a = image.alt || '';
-        let t = a.split(' ');
+        let t = bs(a,['-',' ']);
         let n = false;
         for (let j = 0; j < t.length; j++) {
             if (excludeAlts.includes(t[j])) {
@@ -12,7 +13,16 @@ javascript: function addButtonToImages() {
                 break;
             }
         }
-        if (n) {
+		let ca = image.class || '';
+		let cas = bs(ca,['-',' ']);
+		let can = false;
+		 for (let j = 0; j < cas.length; j++) {
+            if (excludeClass.includes(cas[j])) {
+                can = true;
+                break;
+            }
+        }
+        if (n || can) {
             continue;
         }
         if (!image.nextElementSibling || !image.nextElementSibling.classList.contains('image-button-container')) {
@@ -49,6 +59,15 @@ javascript: function addButtonToImages() {
 			}
         }
     }
+}
+function bs(input, sep) {
+    let res = [input];
+
+    sep.forEach((sep) => {
+        res = res.flatMap((s) => s.split(sep));
+    });
+
+    return res;
 }
 function openImageInNewTab(imageUrl) {
     window.open(imageUrl, '_blank');
