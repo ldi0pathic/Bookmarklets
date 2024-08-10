@@ -11,4 +11,4 @@ Schaltflächen:
 Fügt eine Schaltfläche zu allen Videos `<Video>` auf der Webseite hinzu.
 
 Schaltflächen:
-- 💾 Erstellt ein Screenshot des aktuzellen VideoKontens, und öffnet diesen in einen neuen Tab 
+- 💾 Erstellt ein Screenshot des aktuellen Video Content, und öffnet diesen in einen neuen Tab 
